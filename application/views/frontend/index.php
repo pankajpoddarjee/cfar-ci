@@ -55,7 +55,7 @@
                     </td>
                     
                     <td>
-                        <a href="<?php echo base_url('page/'.$post->id) ?>"><i class="fa fa-edit"></i>View</a>
+                        <a href="<?php echo base_url('page/'.$post->slug) ?>"><i class="fa fa-edit"></i>View</a>
                     </td>
                 </tr>
                 <?php

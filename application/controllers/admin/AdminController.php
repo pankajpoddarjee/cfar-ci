@@ -311,6 +311,7 @@ class AdminController extends CI_Controller {
                             $this->load->view('admin/save_post',$data); return;
                         }
                     }
+                    $postData['slug'] =  $this->create_slug($this->input->post('title'));
                     $postData['post_type'] = $this->input->post('post_type');
                     $postData['title'] = $this->input->post('title');
                     $postData['sub_title'] = $this->input->post('sub_title');
@@ -376,7 +377,10 @@ class AdminController extends CI_Controller {
             
             if ($this->form_validation->run() == FALSE)
             {
-                $this->load->view('admin/save_post');
+                $data['post'] = $this->admin->get_one_post($post_id);
+                $data['post_gallery_image'] = $this->admin->get_gallery_image_by_post_id($post_id);
+                $data['post_type'] = $this->admin->get_all_post_type();
+                $this->load->view('admin/save_post',$data);
                 
             } else { 
                     if (!empty($_FILES['banner_img']['name'])){ 
@@ -423,6 +427,7 @@ class AdminController extends CI_Controller {
                             $this->load->view('admin/save_post',$data); return;
                         }
                     }
+                    $postData['slug'] =  $this->create_slug($this->input->post('title'));
                     $postData['post_type'] = $this->input->post('post_type');
                     $postData['title'] = $this->input->post('title');
                     $postData['sub_title'] = $this->input->post('sub_title');
@@ -563,4 +568,32 @@ class AdminController extends CI_Controller {
         }
            
     }
+
+
+    public function create_slug($title)
+    { 
+        $table='posts';    //Write table name
+        $field='slug';         //Write field name
+        $slug = $title;  //Write title for slug
+        $slug = url_title($title);
+        $key=NULL;
+        $value=NULL;       
+        $i = 0;
+        $params = array ();
+        $params[$field] = $slug;
+
+        if($key)$params["$key !="] = $value;
+
+        while ($this->db->from($table)->where($params)->get()->num_rows())
+        {  
+            if (!preg_match ('/-{1}[0-9]+$/', $slug ))
+            $slug .= '-' . ++$i;
+            else
+            $slug = preg_replace ('/[0-9]+$/', ++$i, $slug );
+            $params [$field] = $slug;
+        }  
+
+        return $alias=$slug;
+    }
+    
 }

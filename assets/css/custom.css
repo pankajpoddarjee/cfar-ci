@@ -13,3 +13,9 @@
 .note-input{
     border: 2px solid black;
 }
+.success-msg{
+    color: #83ff9a;
+}
+.error-msg{
+    color: #f1baba;
+}

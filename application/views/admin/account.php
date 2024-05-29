@@ -27,7 +27,7 @@
     <link href="<?php echo base_url('assets/css/sidebar-menu.css') ?>" rel="stylesheet" />
     <!-- Custom Style-->
     <link href="<?php echo base_url('assets/css/app-style.css') ?>" rel="stylesheet" />
-    
+    <link href="<?php echo base_url('assets/css/custom.css') ?>" rel="stylesheet" />
    
     <!-- Ckeditor-->
     <script type="text/javascript" src="<?php echo base_url('assets/ckeditor/ckeditor.js') ?>"></script>
@@ -69,10 +69,10 @@
                                             </div>
                                             <div class="col-md-6">
                                             <?php if($this->session->flashdata('success')){?>
-                                            <p style="color:green"><?php  echo $this->session->flashdata('success');?></p>	
+                                            <p class="success-msg"><?php  echo $this->session->flashdata('success');?></p>	
                                             <?php } ?>
                                             <?php if($this->session->flashdata('error')){?>
-                                            <p style="color:red"><?php  echo $this->session->flashdata('error');?></p>	
+                                            <p class="error-msg"><?php  echo $this->session->flashdata('error');?></p>	
                                             <?php } ?>
                                             </div>
                                         </div>

@@ -30,7 +30,7 @@ class FrontendModel extends CI_Model
 
         $this->db->join("post_type", "posts.post_type=post_type.id");
 
-        $this->db->where(['posts.id' => $id]);
+        $this->db->where(['posts.slug' => $id]);
 
         $qry = $this->db->get();
 

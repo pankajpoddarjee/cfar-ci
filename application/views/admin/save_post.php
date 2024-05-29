@@ -68,10 +68,10 @@
                                             </div>
                                             <div class="col-md-6">
                                             <?php if($this->session->flashdata('success')){?>
-                                            <p style="color:green"><?php  echo $this->session->flashdata('success');?></p>	
+                                            <p class="success-msg"><?php  echo $this->session->flashdata('success');?></p>	
                                             <?php } ?>
                                             <?php if($this->session->flashdata('error')){?>
-                                            <p style="color:red"><?php  echo $this->session->flashdata('error');?></p>	
+                                            <p class="error-msg"><?php  echo $this->session->flashdata('error');?></p>	
                                             <?php } ?>
                                             </div>
                                         </div>
