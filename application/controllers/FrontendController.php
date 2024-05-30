@@ -39,7 +39,7 @@ class FrontendController extends CI_Controller {
 	public function viewDetails($id)
 	{ 
 		$data['post'] = $this->frontend->get_one_post($id);
-		$data['post_gallery_image'] = $this->frontend->get_gallery_image_by_post_id($id);
+		$data['post_gallery_image'] = $this->frontend->get_gallery_image_by_post_id($data['post']->id);
 		$this->load->view('frontend/view_details',$data);
 	}
 }

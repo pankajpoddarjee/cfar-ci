@@ -75,7 +75,9 @@
                                                         <th scope="col">Title</th>
                                                         <th scope="col">Sub Title</th>
                                                         <th scope="col">Description</th>
-                                                        <th scope="col">Action</th>
+                                                        <th scope="col">Edit</th>
+                                                        <th scope="col">Active</th>
+                                                        <th scope="col">Is New</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -86,20 +88,45 @@
                                                         
                                                         $delete_style = ($post->is_active == '0')?"color: red":"";
                                                         $delete_msg = ($post->is_active == '0')?"Active":"Deactive";
+
+                                                        $is_new_style = ($post->is_new == '0')?"color: red":"";
+                                                        $is_new_msg = ($post->is_new == '0')?"add new":"remove new";
                                                        
                                                     ?>
                                                     <tr >
                                                         <th scope="row"><?php echo $i; ?></th>
                                                         <td><?php echo $post->post_type_name; ?></td>
                                                         <td><img src="<?php echo base_url().$post->banner_img; ?>" width="50" height="50"></td>
-                                                        <td><?php echo $post->title; ?></td>
-                                                        <td><?php echo $post->sub_title; ?></td>
-                                                        <td><?php echo html_entity_decode($post->description); ?> <?php echo (strlen($post->description)>30)?"...":""; ?></td>
+                                                        <td><?php 
+                                                        $string = $post->title;
+                                                        if(strlen($string) > 25) $string = substr($string, 0, 25).'...';
+                                                        echo $string;
+                                                        ?></td>
+                                                        <td><?php 
+                                                        $string = $post->sub_title;
+                                                        if(strlen($string) > 25) $string = substr($string, 0, 25).'...';
+                                                        echo $string;
+                                                        ?></td>
+                                                        <td><?php 
+                                                        
+                                                         //echo html_entity_decode($post->description); ?> <?php //echo (strlen($post->description)>30)?"...":""; 
+
+                                                        $string = strip_tags($post->description);
+                                                        if(strlen($string) > 50) $string = substr($string, 0, 50).'...';
+                                                        echo $string;
+
+                                                        ?>
+                                                        </td>
                                                         <td>
                                                             <a href="<?php echo base_url('admin/editPost/'.$post->id) ?>"><i class="fa fa-edit"></i>
-                                                            </a>&nbsp;&nbsp;&nbsp;
+                                                            </a>
+                                                        </td>
+                                                        <td>                                                            
                                                             <a onclick="return confirm('Are you sure want to <?php echo $delete_msg; ?> this post ?')" href="<?php echo base_url('admin/deletePost/'.$post->id) ?>" style="<?php echo  $delete_style; ?>"><i class="fa fa-trash-o"></i></a>
-                                                    </td>
+                                                        </td>
+                                                        <td>                                                            
+                                                            <a onclick="return confirm('Are you sure want to <?php echo $is_new_msg; ?> flag ?')" href="<?php echo base_url('admin/newFlag/'.$post->id) ?>" style="<?php echo  $is_new_style; ?>"><i class="fa fa-flag" aria-hidden="true"></i></a>
+                                                        </td>
                                                     </tr>
                                                     <?php
                                                      $i++; }

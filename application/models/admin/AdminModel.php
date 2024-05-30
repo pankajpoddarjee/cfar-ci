@@ -199,5 +199,9 @@ class AdminModel extends CI_Model
         $result = $this->db->where('id', $id)->update('post_type', $data);
 		return $result;
     }
+    public function update_new_flag($id,$data){
+        $result = $this->db->where('id', $id)->update('posts', $data);
+		return $result;
+    }
 
 }

@@ -70,6 +70,7 @@ $route['admin/addPost'] = "admin/AdminController/addPost";
 $route['admin/savePost'] = "admin/AdminController/savePost";
 $route['admin/editPost/(:any)'] = "admin/AdminController/editPost/$1";
 $route['admin/deletePost/(:any)'] = "admin/AdminController/deletePost/$1";
+$route['admin/newFlag/(:any)'] = "admin/AdminController/newFlag/$1";
 //post type
 $route['admin/postType'] = "admin/AdminController/postType";
 $route['admin/addPostType'] = "admin/AdminController/addPostType";

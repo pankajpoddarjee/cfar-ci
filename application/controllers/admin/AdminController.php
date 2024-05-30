@@ -595,5 +595,20 @@ class AdminController extends CI_Controller {
 
         return $alias=$slug;
     }
+
+    public function newFlag($id)
+    { 
+      $record = $this->admin->get_one_post($id);
+      $status = $record->is_new;
+  
+      $updateData['is_new'] = ($status==1)?0:1;
+      $delete = $this->admin->update_new_flag($id,$updateData);
+      if($delete){
+      $this->session->set_flashdata('success', 'New flag updated successfully');
+      }else{
+          $this->session->set_flashdata('error', 'New flag not updated');
+      } 
+      redirect(base_url('admin/post'));
+    }
     
 }
